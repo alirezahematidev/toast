@@ -12,7 +12,9 @@ interface ToastComponentProps {
 
 const ToastComponent = memo(({ id, duration, message }: ToastComponentProps) => {
   useEffect(() => {
-    const timer = setTimeout(() => startTransition(() => destroy(id)), duration);
+    const timer = setTimeout(() => {
+      startTransition(() => destroy(id));
+    }, duration);
 
     return () => clearTimeout(timer);
   }, [duration, id]);
